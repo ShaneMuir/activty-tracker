@@ -28,14 +28,14 @@
         <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
         <input :type="passwordFieldType1" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password"
                v-model="password"/>
-        <i @click="showPassword" class="fas fa-eye"></i>
+        <i @click="showPassword" :class="{active: passwordActive}" class="fas fa-eye"></i>
       </div>
 
       <div class="flex flex-col mb-2 password-field">
         <label for="confirmPassword" class="mb-1 text-sm text-at-light-green">Confirm Password</label>
         <input :type="passwordFieldType2" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="confirmPassword"
                v-model="confirmPassword"/>
-        <i @click="confirmShowPassword" class="fas fa-eye"></i>
+        <i @click="confirmShowPassword" :class="{active: confirmPasswordActive}" class="fas fa-eye"></i>
       </div>
 
 
@@ -60,15 +60,19 @@ export default {
   data() {
     return {
       passwordFieldType1: 'password',
-      passwordFieldType2: 'password'
+      passwordFieldType2: 'password',
+      passwordActive: false,
+      confirmPasswordActive: false
     }
   },
   methods: {
     showPassword() {
       this.passwordFieldType1 = this.passwordFieldType1 === 'password' ? 'text' : 'password'
+      this.passwordActive = this.passwordFieldType1 !== 'password'
     },
     confirmShowPassword() {
       this.passwordFieldType2 = this.passwordFieldType2 === 'password' ? 'text' : 'password'
+      this.confirmPasswordActive = this.passwordFieldType2 !== 'password'
     }
   },
   setup() {
