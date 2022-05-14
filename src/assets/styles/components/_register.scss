@@ -1,0 +1,22 @@
+form {
+  .password-field {
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 10px;
+      top: 60%;
+      color: #ccc;
+      cursor: pointer;
+      transform: translateY(-50%);
+      z-index: 22;
+
+      &.active {
+        &:before {
+          color: #333;
+          content: '\f070';
+        }
+      }
+    }
+  }
+}
