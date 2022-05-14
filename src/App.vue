@@ -1,11 +1,15 @@
 <template>
-  <div>
+  <Navigation/>
+  <div class="min-h-full font-Poppins box-border">
     <router-view />
   </div>
 </template>
 
 <script>
+import Navigation from "@/components/Navigation";
+
 export default {
+  components: {Navigation},
   setup() {
     // Create data / vars
 
