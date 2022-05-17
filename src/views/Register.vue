@@ -1,7 +1,4 @@
 <template>
-  <div class="box">
-
-  </div>
   <div class="max-w-screen-sm mx-auto px-4 py-10">
     <!-- Error Message -->
     <div v-if="errorMsg" class="mb-10 p-4 rounded-md bg-light-grey shadow-lg">
@@ -9,7 +6,7 @@
     </div>
 
     <!-- Register From -->
-    <form class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
+    <form @submit.prevent="register" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
       <h1 class="text-3xl text-at-light-green mb-4">Register</h1>
 
       <div class="flex flex-col mb-2">
@@ -37,7 +34,6 @@
                v-model="confirmPassword"/>
         <i @click="confirmShowPassword" :class="{active: confirmPasswordActive}" class="fas fa-eye"></i>
       </div>
-
 
         <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
          duration-200 border-solid border-2 border-transparent hover:border-white
@@ -90,5 +86,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/components/register";
+@import "../assets/styles/components/auth";
 </style>
