@@ -10,9 +10,9 @@
       <h1 class="text-3xl text-at-light-green mb-4">Register</h1>
 
       <div class="flex flex-col mb-2">
-        <label for="name" class="mb-1 text-sm text-at-light-green">Name</label>
-        <input type="text" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="name"
-        v-model="name"/>
+        <label for="username" class="mb-1 text-sm text-at-light-green">Username</label>
+        <input type="text" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="Username"
+        v-model="username"/>
       </div>
 
       <div class="flex flex-col mb-2">
@@ -62,7 +62,7 @@ export default {
   setup() {
     // Create data / vars
     const router = useRouter();
-    const name = ref(null)
+    const username = ref(null)
     const email = ref(null)
     const password = ref(null)
     const errorMsg = ref(null)
@@ -73,11 +73,12 @@ export default {
       if(passwordRegex.test(password.value)) {
         try {
           const {error } = await supabase.auth.signUp({
-            name: name.value,
+            username: username.value,
             email: email.value,
             password: password.value,
           })
-          if(error) throw error;
+          if(error) throw error
+          localStorage.setItem('username', username.value)
           await router.push({name: 'Login'})
         } catch(error) {
           errorMsg.value = error.message
@@ -92,9 +93,8 @@ export default {
           errorMsg.value = null
         }, 7500)
       }
-
     }
-    return {name, email, password, errorMsg, register};
+    return {username, email, password, errorMsg, register};
   },
 };
 </script>
