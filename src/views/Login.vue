@@ -38,6 +38,7 @@
 import {ref} from "vue"
 import {supabase} from "@/supabase/init"
 import {useRouter} from 'vue-router'
+import {useProgress} from '@marcoschulte/vue3-progress';
 
 
 export default {
@@ -60,10 +61,13 @@ export default {
     const email = ref(null)
     const password = ref(null)
     const errorMsg = ref(null)
+    let progresses = []
 
     // Login function
     const login = async() => {
       try{
+        const progress = useProgress().start();
+        progresses.push(progress)
         const {error, user} = await supabase.auth.signIn({
           email: email.value,
           password: password.value,
@@ -75,6 +79,7 @@ export default {
           username: localStorage.getItem('username')
         })
         if(error2) throw error2
+        progresses.pop()?.finish()
         await router.push({name: 'Home'})
       }
       catch(error) {

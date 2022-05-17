@@ -1,4 +1,5 @@
 <template>
+  <vue3-progress-bar></vue3-progress-bar>
   <Navigation/>
   <div class="min-h-full font-Poppins box-border">
     <router-view />
@@ -7,6 +8,7 @@
 
 <script>
 import Navigation from "@/components/Navigation";
+
 
 export default {
   components: {Navigation},
@@ -19,6 +21,8 @@ export default {
 
     // Runs when there is a auth state change
     // if user is logged in, this will fire
+
+
 
     return {};
   },

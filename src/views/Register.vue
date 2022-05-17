@@ -45,6 +45,7 @@
 import {ref} from 'vue'
 import {supabase} from "@/supabase/init"
 import { useRouter } from 'vue-router'
+import {useProgress} from '@marcoschulte/vue3-progress';
 
 export default {
   name: "register",
@@ -66,12 +67,15 @@ export default {
     const email = ref(null)
     const password = ref(null)
     const errorMsg = ref(null)
+    let progresses = []
 
     // Register function
     const register = async () => {
       const passwordRegex = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
       if(passwordRegex.test(password.value)) {
         try {
+          const progress = useProgress().start();
+          progresses.push(progress)
           const {error } = await supabase.auth.signUp({
             username: username.value,
             email: email.value,
@@ -79,6 +83,7 @@ export default {
           })
           if(error) throw error
           localStorage.setItem('username', username.value)
+          progresses.pop()?.finish()
           await router.push({name: 'Login'})
         } catch(error) {
           errorMsg.value = error.message
