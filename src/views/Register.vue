@@ -23,16 +23,9 @@
 
       <div class="flex flex-col mb-2 password-field">
         <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
-        <input :type="passwordFieldType1" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password"
+        <input :type="passwordFieldType" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password"
                v-model="password"/>
         <i @click="showPassword" :class="{active: passwordActive}" class="fas fa-eye"></i>
-      </div>
-
-      <div class="flex flex-col mb-2 password-field">
-        <label for="confirmPassword" class="mb-1 text-sm text-at-light-green">Confirm Password</label>
-        <input :type="passwordFieldType2" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="confirmPassword"
-               v-model="confirmPassword"/>
-        <i @click="confirmShowPassword" :class="{active: confirmPasswordActive}" class="fas fa-eye"></i>
       </div>
 
         <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
@@ -50,37 +43,58 @@
 
 <script>
 import {ref} from 'vue'
+import {supabase} from "@/supabase/init"
+import { useRouter } from 'vue-router'
 
 export default {
   name: "register",
   data() {
     return {
-      passwordFieldType1: 'password',
-      passwordFieldType2: 'password',
+      passwordFieldType: 'password',
       passwordActive: false,
-      confirmPasswordActive: false
     }
   },
   methods: {
     showPassword() {
-      this.passwordFieldType1 = this.passwordFieldType1 === 'password' ? 'text' : 'password'
-      this.passwordActive = this.passwordFieldType1 !== 'password'
+      this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
     },
-    confirmShowPassword() {
-      this.passwordFieldType2 = this.passwordFieldType2 === 'password' ? 'text' : 'password'
-      this.confirmPasswordActive = this.passwordFieldType2 !== 'password'
-    }
   },
   setup() {
     // Create data / vars
+    const router = useRouter();
     const name = ref(null)
     const email = ref(null)
     const password = ref(null)
-    const confirmPassword = ref(null)
     const errorMsg = ref(null)
 
     // Register function
-    return {name, email, password, confirmPassword, errorMsg};
+    const register = async () => {
+      const passwordRegex = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
+      if(passwordRegex.test(password.value)) {
+        try {
+          const {error } = await supabase.auth.signUp({
+            name: name.value,
+            email: email.value,
+            password: password.value,
+          })
+          if(error) throw error;
+          await router.push({name: 'Login'})
+        } catch(error) {
+          errorMsg.value = error.message
+          setTimeout(() => {
+            errorMsg.value = null
+          }, 7500)
+        }
+      } else {
+        errorMsg.value = `Password must contain 8 characters and have a mix
+                          of letters, numbers and symbols.`
+        setTimeout(() => {
+          errorMsg.value = null
+        }, 7500)
+      }
+
+    }
+    return {name, email, password, errorMsg, register};
   },
 };
 </script>
