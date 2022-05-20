@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    Create
+  </div>
 </template>
 
 <script>
@@ -12,7 +14,7 @@ export default {
 
     // Delete exercise
 
-    // Listens for chaging of workout type input
+    // Listens for changing of workout type input
 
     // Create workout
 
