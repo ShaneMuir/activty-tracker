@@ -1,12 +1,12 @@
 <template>
   <div>
-    Home
+    Profile Page
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "Profile",
   components: {},
   data() {
     return {
@@ -15,7 +15,6 @@ export default {
   },
   setup() {
     // Create data / vars
-
 
     // Get data
 

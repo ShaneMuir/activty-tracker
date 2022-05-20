@@ -10,6 +10,7 @@
 
         <ul class="flex flex-1 justify-end gap-x-10">
           <router-link class="cursor-pointer" :to="{name: 'Home'}">Home</router-link>
+          <router-link v-if="user" class="cursor-pointer" :to="{name: 'Profile', params:{'username': user.id }}">Profile</router-link>
           <router-link v-if="user" class="cursor-pointer" :to="{name: 'Register'}">Create</router-link>
           <router-link v-if="!user" class="cursor-pointer" :to="{name: 'Login'}">Login</router-link>
           <li v-if="user" @click="logout" class="cursor-pointer">Logout</li>
@@ -28,7 +29,6 @@ export default {
   setup() {
     // Get user from store
     const user = computed(() => store.state.user)
-
     // Setup ref to router
     const router = useRouter()
 

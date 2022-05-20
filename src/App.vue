@@ -24,7 +24,19 @@ export default {
     // If user does not exist, need to make app ready
     if(!user) {
       appReady.value = true
+    } else {
+      const getProfile = async () => {
+        try {
+          const {data} = await supabase.from('profiles').select('username').match({id: user.id})
+          store.state.username = data[0].username
+        }
+        catch(error) {
+          console.log(error)
+        }
+      }
+      getProfile()
     }
+
 
     // Runs when there is an auth state change
     // if user is logged in, this will fire
