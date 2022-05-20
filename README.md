@@ -11,7 +11,7 @@ to come up with this Fitness Tracker App.
 - Personalised workout section
 - Inspiration Homepage
 - Log in with Github / Google / FB at least one
-- Re-design
+- Re-design (mobile first)
 - Progress Bar
 
 ## Project setup
