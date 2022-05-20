@@ -63,42 +63,48 @@ export default {
     const errorMsg = ref(null)
     let progresses = []
 
-    // Login function
-    const login = async() => {
-      try{
-        const progress = useProgress().start();
-        progresses.push(progress)
-        const {error, user} = await supabase.auth.signIn({
-          email: email.value,
-          password: password.value,
-        })
-        if(error) {
+    const user = supabase.auth.user();
+    // Again conditional to try reduce auth requests to db.
+    if(!user) {
+      // Login function
+      const login = async() => {
+        try{
+          const progress = useProgress().start();
+          progresses.push(progress)
+          const {error, user} = await supabase.auth.signIn({
+            email: email.value,
+            password: password.value,
+          })
+          if(error) {
+            progresses.pop()?.finish()
+            throw error
+          }
+
+          const {checkUser} = await supabase.from('profiles').select('username').match({id: user.id})
+          if(!checkUser) {
+            const {error3} = await supabase.from('profiles').insert({
+              id: user.id,
+              username: localStorage.getItem('username')
+            })
+            if(error3) throw error3
+          }
+
           progresses.pop()?.finish()
-          throw error
+          await router.push({name: 'Home'})
         }
-
-        const {data} = await supabase.from('profiles').select('username').match({id: user.id})
-
-         if(!data) {
-           const {error3} = await supabase.from('profiles').insert({
-             id: user.id,
-             username: localStorage.getItem('username')
-           })
-           if(error3) throw error3
-         }
-
-        progresses.pop()?.finish()
-        await router.push({name: 'Home'})
+        catch(error) {
+          errorMsg.value = `Error: ${error.message}`
+          progresses.pop()?.finish()
+          setTimeout(() => {
+            errorMsg.value = null
+          }, 7500)
+        }
       }
-      catch(error) {
-        errorMsg.value = `Error: ${error.message}`
-        progresses.pop()?.finish()
-        setTimeout(() => {
-          errorMsg.value = null
-        }, 7500)
-      }
+      return {email, password, errorMsg, login}
+    } else {
+      router.push({name: 'Home'})
     }
-    return {email, password, errorMsg, login}
+    return {email, password, errorMsg}
   },
 }
 </script>
