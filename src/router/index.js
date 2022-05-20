@@ -4,6 +4,7 @@ import Register from "@/views/Register.vue"
 import Login from "@/views/Login.vue"
 import Profile from "@/views/Profile"
 import Create from "@/views/Create";
+import ViewWorkout from "@/views/ViewWorkout";
 
 const routes = [
   {
@@ -27,9 +28,14 @@ const routes = [
     component: Create,
   },
   {
-    path: "/profile/:username",
+    path: "/profile/:id",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/view-workout/:workoutId",
+    name: "View-Workout",
+    component: ViewWorkout,
   },
 ];
 
