@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{username}}
+    Home
   </div>
 </template>
 
@@ -10,7 +10,7 @@ export default {
   components: {},
   data() {
     return {
-       username: localStorage.getItem('username')
+
     }
   },
   setup() {

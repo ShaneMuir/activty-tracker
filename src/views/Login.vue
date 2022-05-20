@@ -72,14 +72,27 @@ export default {
           email: email.value,
           password: password.value,
         })
-        if(error) throw error
-        progresses.pop()?.finish()
+        if(error) {
+          progresses.pop()?.finish()
+          throw error
+        }
 
-        const {error2} = await supabase.from('profiles').insert({
-          id: user.id,
-          username: localStorage.getItem('username')
-        })
-        if(error2) throw error2
+        const {checkUser, error2} = await supabase
+            .from('profiles')
+            .select('username')
+            .match({id: user.id})
+        if(error2) {
+          throw error2
+        }
+
+        if(checkUser) {
+          const {error3} = await supabase.from('profiles').insert({
+            id: user.id,
+            username: localStorage.getItem('username')
+          })
+          if(error3) throw error3
+        }
+
         progresses.pop()?.finish()
         await router.push({name: 'Home'})
       }
