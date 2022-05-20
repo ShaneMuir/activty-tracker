@@ -12,7 +12,6 @@ import {ref} from "vue";
 import {supabase} from "@/supabase/init";
 import store from "@/store";
 
-
 export default {
   components: {Navigation},
   setup() {
@@ -33,7 +32,6 @@ export default {
       store.methods.setUser(session)
       appReady.value = true
     })
-
 
     return {appReady};
   },
