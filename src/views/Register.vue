@@ -101,6 +101,12 @@ export default {
         }, 7500)
       }
     }
+
+    const user = supabase.auth.user()
+    if(user) {
+      router.push({name: "Home"})
+    }
+
     return {username, email, password, errorMsg, register};
   },
 };
