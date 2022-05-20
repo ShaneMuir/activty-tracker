@@ -87,11 +87,13 @@ export default {
           await router.push({name: 'Login'})
         } catch(error) {
           errorMsg.value = error.message
+          progresses.pop()?.finish()
           setTimeout(() => {
             errorMsg.value = null
           }, 7500)
         }
       } else {
+        progresses.pop()?.finish()
         errorMsg.value = `Password must contain 8 characters and have a mix
                           of letters, numbers and symbols.`
         setTimeout(() => {

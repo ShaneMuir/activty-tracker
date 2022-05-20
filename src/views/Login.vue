@@ -73,6 +73,7 @@ export default {
           password: password.value,
         })
         if(error) throw error
+        progresses.pop()?.finish()
 
         const {error2} = await supabase.from('profiles').insert({
           id: user.id,
@@ -84,6 +85,7 @@ export default {
       }
       catch(error) {
         errorMsg.value = `Error: ${error.message}`
+        progresses.pop()?.finish()
         setTimeout(() => {
           errorMsg.value = null
         }, 7500)
