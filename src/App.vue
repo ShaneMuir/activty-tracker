@@ -4,16 +4,18 @@
   <div v-if="appReady" class="min-h-full font-Poppins box-border">
     <router-view />
   </div>
+  <Footer/>
 </template>
 
 <script>
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import {ref} from "vue";
 import {supabase} from "@/supabase/init";
 import store from "@/store";
 
 export default {
-  components: {Navigation},
+  components: {Navigation, Footer},
   setup() {
     // Create data / vars
     const appReady = ref(null)
