@@ -3,8 +3,9 @@ import Home from "@/views/Home.vue"
 import Register from "@/views/Register.vue"
 import Login from "@/views/Login.vue"
 import Profile from "@/views/Profile"
-import Create from "@/views/Create";
-import ViewWorkout from "@/views/ViewWorkout";
+import Create from "@/views/Create"
+import ViewWorkout from "@/views/ViewWorkout"
+import UpdateProfile from "@/views/UpdateProfile"
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: "/profile/:id",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/update_profile/:id",
+    name: "UpdateProfile",
+    component: UpdateProfile,
   },
   {
     path: "/workout/:workoutId",
