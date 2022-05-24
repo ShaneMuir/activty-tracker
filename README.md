@@ -5,14 +5,15 @@ I have taken what I've learnt from this tutorial and many others YT vids along w
 to come up with this Fitness Tracker App.
 
 ### Things I want to add to the project
-- Profiles Page
-- BMI Calculator
-- Calorie Tracker
-- Personalised workout section
-- Inspiration Homepage
+- Profiles Page ADDED
+- BMI Calculator ADDED
+- Personalised workout section ADDED on profile page
+  - Future functionality:
+  - add other peoples workouts to your own profile section
+- Inspiration Homepage 
 - Log in with Github / Google / FB at least one
 - Re-design (mobile first)
-- Progress Bar
+- Progress Bar ADDED
 
 ## Project setup
 ```
