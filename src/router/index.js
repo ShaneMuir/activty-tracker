@@ -33,7 +33,7 @@ const routes = [
     component: Profile,
   },
   {
-    path: "/view-workout/:workoutId",
+    path: "/workout/:workoutId",
     name: "View-Workout",
     component: ViewWorkout,
   },

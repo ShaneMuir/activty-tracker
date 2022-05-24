@@ -27,9 +27,13 @@
           {{ workout.workoutType }}
         </p>
 
-        <h1 class="mt-8 mb-2 text-center text-xl text-at-light-green">
+        <h1 class="mt-4 mb-2 text-center text-xl text-at-light-green">
           {{ workout.workoutName }}
         </h1>
+
+        <p class="mt-2 py-1 px-3 text-xs text-white bg-at-light-green shadow-md rounded-lg">
+          Created by {{ workout.username }}
+        </p>
       </router-link>
     </div>
   </div>

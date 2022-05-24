@@ -138,8 +138,6 @@ export default {
     const errorMsg = ref(null);
     const user = computed(() => store.state.user)
 
-
-    // Add exercise
     // Add exercise
     const addExercise = () => {
       if (workoutType.value === "strength") {
@@ -161,7 +159,6 @@ export default {
       })
     }
 
-
     // Delete exercise
     const deleteExercise = (id) => {
       if (exercises.value.length > 1) {
@@ -178,15 +175,33 @@ export default {
       exercises.value = [];
       addExercise();
     };
+
+    const getUsername = async () => {
+      try {
+        const {data, error, status} = await supabase.from('profiles').select(`username`).match({id: user.value.id}).single()
+        if(data) return data
+        if(error && status !== 406) {
+          console.log(error)
+        }
+      }
+      catch(error) {
+        console.warn(error)
+      }
+    }
+
+
+
     // Create workout
     const createWorkout = async () => {
       try {
+        let username = await getUsername()
         const { error } = await supabase.from("workouts").insert([
           {
             workoutName: workoutName.value,
             workoutType: workoutType.value,
             exercises: exercises.value,
-            belongsTo: user.value.id
+            belongsTo: user.value.id,
+            username: username.username
           },
         ]);
         if (error) throw error;
