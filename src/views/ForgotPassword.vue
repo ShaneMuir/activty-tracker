@@ -14,6 +14,8 @@
         <input type="text" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="email" v-model="email"/>
       </div>
 
+      <p>Note: Once you get a magic link to sign in you can reset your password in the profile area.</p>
+
       <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm
       text-white bg-at-light-green duration-200 border-solid
       border-2 border-transparent hover:border-at-light-green hover:bg-white

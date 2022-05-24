@@ -69,6 +69,13 @@
           :disabled="loading"
       />
     </form>
+
+    <div class="flex flex-col mb-2">
+      <router-link class="text-sm mt-6 text-center" :to="{ name: 'NewPassword' }">
+        <span class="text-at-light-green">New Password</span>
+      </router-link>
+    </div>
+
   </div>
 </template>
 

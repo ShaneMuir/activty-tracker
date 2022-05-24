@@ -30,6 +30,9 @@
       <router-link class="text-sm mt-6 text-center" :to="{ name: 'Register' }">
         Don't have an account? <span class="text-at-light-green">Register</span>
       </router-link>
+      <router-link class="text-sm mt-6 text-center" :to="{ name: 'ForgotPassword' }">
+        <span class="text-at-light-green">Forgot Password</span>
+      </router-link>
     </form>
   </div>
 </template>
@@ -100,6 +103,7 @@ export default {
           }, 7500)
         }
       }
+
       return {email, password, errorMsg, login}
     } else {
       router.push({name: 'Home'})
