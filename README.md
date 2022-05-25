@@ -14,6 +14,16 @@ to come up with this Fitness Tracker App.
 - Log in with Github / Google / FB at least one
 - Re-design (mobile first)
 - Progress Bar ADDED
+- Enforce strong password
+- Locked be able to delete/edit workout 
+that don't belong to the created user
+
+In order to be able to get set up with this project locally you will 
+need to sign upto [Supabase](https://supabase.com/) and get 2 keys. 
+URL Key and Anon key store this in a env file somewhere safe and update
+``
+src/supabase/init.js
+`` to match your key locations.
 
 ## Project setup
 ```
@@ -24,6 +34,7 @@ npm install
 ```
 npm run serve
 ```
+
 
 ### Compiles and minifies for production
 ```
