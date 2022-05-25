@@ -43,7 +43,6 @@ import {supabase} from "@/supabase/init"
 import {useRouter} from 'vue-router'
 import {useProgress} from '@marcoschulte/vue3-progress';
 
-
 export default {
   name: "login",
   data() {
@@ -67,7 +66,7 @@ export default {
     let progresses = []
 
     const user = supabase.auth.user();
-    // Again conditional to try reduce auth requests to db.
+    // Again conditional to try to reduce auth requests to db.
     if(!user) {
       // Login function
       const login = async() => {
@@ -105,10 +104,11 @@ export default {
       }
 
       return {email, password, errorMsg, login}
-    } else {
+    }
+    else
+    {
       router.push({name: 'Home'})
     }
-    return {email, password, errorMsg}
   },
 }
 </script>

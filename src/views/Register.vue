@@ -79,7 +79,7 @@ export default {
           try {
             const progress = useProgress().start();
             progresses.push(progress)
-            const {error } = await supabase.auth.signUp({
+            const {error} = await supabase.auth.signUp({
               username: username.value,
               email: email.value,
               password: password.value,
