@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {useProgress} from "@marcoschulte/vue3-progress";
 import {supabase} from "@/supabase/init";
 import {useRouter} from "vue-router";
@@ -50,7 +50,7 @@ export default  {
     const password = ref(null)
     const errorMsg = ref(null)
     const router = useRouter()
-    const user = store.state.user
+    const user = computed(() => store.state.user)
     let progresses = []
 
       const newPassword = async () => {

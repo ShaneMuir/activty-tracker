@@ -178,7 +178,11 @@ export default {
 
     const getUsername = async () => {
       try {
-        const {data, error, status} = await supabase.from('profiles').select(`username`).match({id: user.value.id}).single()
+        const {data, error, status} = await supabase
+            .from('profiles')
+            .select(`username`)
+            .match({id: user.value.id})
+            .single()
         if(data) return data
         if(error && status !== 406) {
           console.log(error)

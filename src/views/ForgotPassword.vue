@@ -29,14 +29,12 @@
 <script>
 import {supabase} from "@/supabase/init";
 import {ref} from "vue";
-// import {useRouter} from "vue-router";
 import {useProgress} from "@marcoschulte/vue3-progress"
 
 export default {
   name: "ForgotPassword",
   setup () {
     // Data vars
-    // const router = useRouter()
     const email = ref(null)
     const errorMsg = ref(null)
     let progresses = []
