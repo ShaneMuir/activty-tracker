@@ -62,7 +62,7 @@ export default  {
           })
           if (error) throw error
           progresses.pop()?.finish()
-          await router.push({name: 'Profile', params: {id: user.id}})
+          await router.push({name: 'Profile', params: {id: user.value.id}})
         } catch (error) {
           errorMsg.value = `Error: ${error.message}`
           progresses.pop()?.finish()
