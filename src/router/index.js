@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router"
+import {supabase} from "@/supabase/init";
 import Home from "@/views/Home.vue"
 import Register from "@/views/Register.vue"
 import Login from "@/views/Login.vue"
@@ -15,7 +16,8 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: "Home"
+      title: "Home",
+      auth: false,
     }
   },
   {
@@ -23,7 +25,8 @@ const routes = [
     name: "Register",
     component: Register,
     meta: {
-      title: "Register"
+      title: "Register",
+      auth: false,
     }
   },
   {
@@ -31,7 +34,8 @@ const routes = [
     name: "Login",
     component: Login,
     meta: {
-      title: "Login"
+      title: "Login",
+      auth: false,
     }
   },
   {
@@ -39,7 +43,9 @@ const routes = [
     name: "Create",
     component: Create,
     meta: {
-      title: "Create Workout"
+      title: "Create Workout",
+      auth: true,
+
     }
   },
   {
@@ -47,7 +53,9 @@ const routes = [
     name: "Profile",
     component: Profile,
     meta: {
-      title: "Profile Page"
+      title: "Profile Page",
+      auth: true,
+
     }
   },
   {
@@ -55,7 +63,8 @@ const routes = [
     name: "UpdateProfile",
     component: UpdateProfile,
     meta: {
-      title: "Update Profile"
+      title: "Update Profile",
+      auth: true,
     }
   },
   {
@@ -63,7 +72,8 @@ const routes = [
     name: "View-Workout",
     component: ViewWorkout,
     meta: {
-      title: "View Workout"
+      title: "View Workout",
+      auth: false,
     }
   },
   {
@@ -71,7 +81,8 @@ const routes = [
     path: "/forgotPassword",
     component: ForgotPassword,
     meta: {
-      title: "Forgot Password"
+      title: "Forgot Password",
+      auth: false,
     }
   },
   {
@@ -79,7 +90,8 @@ const routes = [
     path: "/newPassword",
     component: NewPassword,
     meta: {
-      title: "New Password"
+      title: "New Password",
+      auth: true,
     }
   },
 ];
@@ -96,5 +108,17 @@ router.beforeEach((to, from, next) => {
 })
 
 // Route guard for auth routes
+router.beforeEach((to, from , next) => {
+  const user = supabase.auth.user()
+  if(to.matched.some((res) => res.meta.auth)) {
+    if (user) {
+      next()
+      return
+    }
+    next({name: "Login"})
+    return
+  }
+  next()
+})
 
 export default router;
