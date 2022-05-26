@@ -1,5 +1,5 @@
 <template>
-  <footer class="mt-10 bg-at-light-green text-white">
+  <footer class="mt-10 bg-at-blue text-white">
     <section class="container py-5 px-4 flex flex-col gap-4 items-center sm:flex-row">
       <div class="flex items-center gap-x-4">
         <p>&copy; Activity Tracker {{year}}</p>

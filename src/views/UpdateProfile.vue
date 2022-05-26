@@ -7,53 +7,53 @@
 
     <!-- Update Profile From -->
     <form @submit.prevent="updateProfile" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
-      <h1 class="text-3xl text-at-light-green mb-4">Update Profile</h1>
+      <h1 class="text-3xl text-at-blue mb-4">Update Profile</h1>
 
       <div class="flex flex-col mb-2">
-        <label for="username" class="mb-1 text-sm text-at-light-green">Username</label>
-        <input type="text" required class="p-2 mb-2 text-gray-500 border border-at-light-green focus:outline-none" id="username"
+        <label for="username" class="mb-1 text-sm text-at-blue">Username</label>
+        <input type="text" required class="p-2 mb-2 text-gray-500 border border-at-blue focus:outline-none" id="username"
                :value="username" disabled/>
       </div>
 
       <div class="flex flex-col mb-2">
-        <label for="avatar_url" class="mb-1 text-sm text-at-light-green">Avatar URL</label>
-        <input type="text" class="p-2 mb-2 border border-at-light-green text-gray-500 focus:outline-none" id="avatar_url"
+        <label for="avatar_url" class="mb-1 text-sm text-at-blue">Avatar URL</label>
+        <input type="text" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none" id="avatar_url"
                v-model="avatar_url"/>
         <div class="avatar-container flex flex-row content-center gap-10 mt-4 mb-4">
           <img class="h-24 w-auto" :src="avatar_url" alt="">
-          <button v-if="avatar_url" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
+          <button v-if="avatar_url" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-blue
          duration-200 border-solid border-2 border-transparent hover:border-white
-          hover:bg-white hover:text-at-light-green" @click.prevent="getAvatarUrl">Regenerate
+          hover:bg-white hover:text-at-blue" @click.prevent="getAvatarUrl">Regenerate
           </button>
-          <button v-else class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
+          <button v-else class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-blue
          duration-200 border-solid border-2 border-transparent hover:border-white
-          hover:bg-white hover:text-at-light-green" @click.prevent="getAvatarUrl">Generate Avatar
+          hover:bg-white hover:text-at-blue" @click.prevent="getAvatarUrl">Generate Avatar
           </button>
         </div>
       </div>
 
       <div class="flex flex-col mb-2">
-        <label for="avatar_url" class="mb-1 text-sm text-at-light-green">Date of birth</label>
-        <input type="date" class="p-2 mb-2 border border-at-light-green text-gray-500 focus:outline-none" id="DOB"
+        <label for="avatar_url" class="mb-1 text-sm text-at-blue">Date of birth</label>
+        <input type="date" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none" id="DOB"
                v-model="DOB"/>
       </div>
 
       <div class="flex gap-10 mb-2">
         <div class="flex flex-col mb-2">
-          <label for="weight" class="mb-1 text-sm text-at-light-green">Weight (kg)</label>
-          <input type="number" class="p-2 mb-2 border border-at-light-green text-gray-500 focus:outline-none" id="weight"
+          <label for="weight" class="mb-1 text-sm text-at-blue">Weight (kg)</label>
+          <input type="number" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none" id="weight"
                  v-model="weight"/>
         </div>
         <div class="flex flex-col mb-2">
-          <label for="height" class="mb-1 text-sm text-at-light-green">Height (cm)</label>
-          <input type="number" class="p-2 mb-2 border border-at-light-green text-gray-500 focus:outline-none" id="height"
+          <label for="height" class="mb-1 text-sm text-at-blue">Height (cm)</label>
+          <input type="number" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none" id="height"
                  v-model="height"/>
         </div>
       </div>
 
       <div class="flex flex-col mb-2">
-        <label for="goal" class="mb-1 text-sm text-at-light-green">Your Goal</label>
-        <select v-model="goal" name="goals" id="goals" class="p-2 mb-2 border border-at-light-green text-gray-500 focus:outline-none">
+        <label for="goal" class="mb-1 text-sm text-at-blue">Your Goal</label>
+        <select v-model="goal" name="goals" id="goals" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none">
           <option v-for="(item, index) in options" :key="index" :value="item">
             {{item}}
           </option>
@@ -62,19 +62,13 @@
 
       <input
           type="submit"
-          class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
+          class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-blue
          duration-200 border-solid border-2 border-transparent hover:border-white
-          hover:bg-white hover:text-at-light-green"
+          hover:bg-white hover:text-at-blue"
           :value="loading ? 'Loading...' : 'Update'"
           :disabled="loading"
       />
     </form>
-
-    <div class="flex flex-col mb-2">
-      <router-link class="text-sm mt-6 text-center" :to="{ name: 'NewPassword' }">
-        <span class="text-at-light-green">New Password</span>
-      </router-link>
-    </div>
 
   </div>
 </template>

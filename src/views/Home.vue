@@ -4,9 +4,9 @@
     <div v-if="data.length === 0" class="w-full flex flex-col items-center">
       <h1 class="text-2xl">Looks empty here...</h1>
       <router-link class="mt-6 py-2 px-6 rounded-sm  text-sm
-            text-white bg-at-light-green duration-200 border-solid
-            border-2 border-transparent hover:border-at-light-green hover:bg-white
-            hover:text-at-light-green" :to="{ name: 'Create' }">
+            text-white bg-at-blue duration-200 border-solid
+            border-2 border-transparent hover:border-at-blue hover:bg-white
+            hover:text-at-blue" :to="{ name: 'Create' }">
         Create Workout
       </router-link>
     </div>
@@ -18,20 +18,20 @@
                     v-for="(workout, index) in data"
                    :key="index">
         <!-- Cardio Img -->
-        <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-light-green.png" class="h-24 w-auto" alt=""/>
+        <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-blue.svg" class="h-24 w-auto" alt=""/>
 
         <!-- Strength Training -->
-        <img v-else src="@/assets/images/dumbbell-light-green.png" class="h-24 w-auto" alt=""/>
+        <img v-else src="@/assets/images/dumbell-blue.svg" class="h-24 w-auto" alt=""/>
 
-        <p class="mt-6 py-1 px-3 text-xs text-white bg-at-light-green shadow-md rounded-lg">
+        <p class="mt-6 py-1 px-3 text-xs text-white bg-at-blue shadow-md rounded-lg">
           {{ workout.workoutType }}
         </p>
 
-        <h1 class="mt-4 mb-2 text-center text-xl text-at-light-green">
+        <h1 class="mt-4 mb-2 text-center text-xl text-at-blue">
           {{ workout.workoutName }}
         </h1>
 
-        <p class="mt-2 py-1 px-3 text-xs text-white bg-at-light-green shadow-md rounded-lg">
+        <p class="mt-2 py-1 px-3 text-xs text-white bg-at-blue shadow-md rounded-lg">
           Created by {{ workout.username }}
         </p>
       </router-link>
@@ -41,7 +41,8 @@
 
 <script>
 import { ref } from "vue";
-import { supabase } from "../supabase/init";
+import { supabase } from "@/supabase/init";
+// import store from "@/store";
 export default {
   name: "Home",
   components: {},
@@ -49,6 +50,7 @@ export default {
     // Create data / vars
     const data = ref([]);
     const dataLoaded = ref(null);
+
     // Get data
     const getData = async () => {
       try {
@@ -62,6 +64,7 @@ export default {
     };
     // Run data function
     getData();
+
     return { data, dataLoaded };
   },
 };

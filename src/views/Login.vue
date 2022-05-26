@@ -7,31 +7,31 @@
 
     <!-- Login -->
     <form @submit.prevent="login" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
-      <h1 class="text-3xl text-at-light-green mb-4">Login</h1>
+      <h1 class="text-3xl text-at-blue mb-4">Login</h1>
 
       <div class="flex flex-col mb-2">
-        <label for="email" class="mb-1 text-sm text-at-light-green">Email</label>
+        <label for="email" class="mb-1 text-sm text-at-blue">Email</label>
         <input type="text" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="email" v-model="email"/>
       </div>
 
       <div class="flex flex-col mb-2 password-field">
-        <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
+        <label for="password" class="mb-1 text-sm text-at-blue">Password</label>
         <input :type="passwordFieldType" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password" v-model="password"/>
         <i @click="showPassword" :class="{active: passwordActive}" class="fas fa-eye"></i>
       </div>
 
       <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm
-      text-white bg-at-light-green duration-200 border-solid
-      border-2 border-transparent hover:border-at-light-green hover:bg-white
-      hover:text-at-light-green">
+      text-white bg-at-blue duration-200 border-solid
+      border-2 border-transparent hover:border-at-blue hover:bg-white
+      hover:text-at-blue">
         Login
       </button>
 
       <router-link class="text-sm mt-6 text-center" :to="{ name: 'Register' }">
-        Don't have an account? <span class="text-at-light-green">Register</span>
+        Don't have an account? <span class="text-at-blue">Register</span>
       </router-link>
       <router-link class="text-sm mt-6 text-center" :to="{ name: 'ForgotPassword' }">
-        <span class="text-at-light-green">Forgot Password</span>
+        <span class="text-at-blue">Forgot Password</span>
       </router-link>
     </form>
   </div>
@@ -73,22 +73,13 @@ export default {
         try{
           const progress = useProgress().start();
           progresses.push(progress)
-          const {error, user} = await supabase.auth.signIn({
+          const {error} = await supabase.auth.signIn({
             email: email.value,
             password: password.value,
           })
           if(error) {
             progresses.pop()?.finish()
             throw error
-          }
-
-          const {checkUser} = await supabase.from('profiles').select('username').match({id: user.id})
-          if(!checkUser) {
-            const {error3} = await supabase.from('profiles').insert({
-              id: user.id,
-              username: localStorage.getItem('username')
-            })
-            if(error3) throw error3
           }
 
           progresses.pop()?.finish()

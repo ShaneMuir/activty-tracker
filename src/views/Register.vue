@@ -7,35 +7,35 @@
 
     <!-- Register From -->
     <form @submit.prevent="register" class="p-8 flex flex-col bg-light-grey rounded-md shadow-lg">
-      <h1 class="text-3xl text-at-light-green mb-4">Register</h1>
+      <h1 class="text-3xl text-at-blue mb-4">Register</h1>
 
       <div class="flex flex-col mb-2">
-        <label for="username" class="mb-1 text-sm text-at-light-green">Username</label>
+        <label for="username" class="mb-1 text-sm text-at-blue">Username</label>
         <input type="text" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="Username"
         v-model="username"/>
       </div>
 
       <div class="flex flex-col mb-2">
-        <label for="email" class="mb-1 text-sm text-at-light-green">Email</label>
+        <label for="email" class="mb-1 text-sm text-at-blue">Email</label>
         <input type="email" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="email"
                v-model="email"/>
       </div>
 
       <div class="flex flex-col mb-2 password-field">
-        <label for="password" class="mb-1 text-sm text-at-light-green">Password</label>
+        <label for="password" class="mb-1 text-sm text-at-blue">Password</label>
         <input :type="passwordFieldType" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password"
                v-model="password"/>
         <i @click="showPassword" :class="{active: passwordActive}" class="fas fa-eye"></i>
       </div>
 
-        <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-light-green
+        <button type="submit" class="mt-6 py-2 px-6 rounded-sm self-start text-sm text-white bg-at-blue
          duration-200 border-solid border-2 border-transparent hover:border-white
-          hover:bg-white hover:text-at-light-green">
+          hover:bg-white hover:text-at-blue">
           Register
         </button>
 
         <router-link :to="{name: 'Login'}" class="text-sm mt-6 text-center">
-          Already have an account? <span class="text-at-light-green">Login</span>
+          Already have an account? <span class="text-at-blue">Login</span>
         </router-link>
     </form>
   </div>
@@ -46,6 +46,7 @@ import {ref} from 'vue'
 import {supabase} from "@/supabase/init"
 import { useRouter } from 'vue-router'
 import {useProgress} from '@marcoschulte/vue3-progress';
+import store from "@/store";
 
 export default {
   name: "register",
@@ -85,9 +86,15 @@ export default {
               password: password.value,
             })
             if(error) throw error
-            localStorage.setItem('username', username.value)
+            const {error2} = await supabase
+                .from('profiles')
+                .insert({
+                  id: store.state.user.id,
+                  username: username.value
+                })
+            if(error2) console.log(error2)
             progresses.pop()?.finish()
-            await router.push({name: 'Login'})
+            await router.push({name: "Home"})
           } catch(error) {
             errorMsg.value = error.message
             progresses.pop()?.finish()

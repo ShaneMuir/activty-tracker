@@ -4,13 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "at-light-green": "#44ba9f",
-        "at-green": "#286d5d",
-        "light-grey": "#f1f1f1",
+        "at-blue": "#3498DB",
+        "light-grey": "#ECF0F1",
       },
     },
     fontFamily: {
-      Poppins: ["Poppins, sans-serif"],
+      Nunito: ["Nunito, sans-serif"],
     },
     flex: {
       "1": "1 1 0%",

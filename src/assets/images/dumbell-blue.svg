@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Icons" x="0px" y="0px" style="enable-background:new 0 0 32 32;" viewBox="0 7 32 18">
+  <style type="text/css">
+	.st0{fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+  <path class="st0" d="M7,24L7,24c-1.1,0-2-0.9-2-2V10c0-1.1,0.9-2,2-2h0c1.1,0,2,0.9,2,2v12C9,23.1,8.1,24,7,24z" style="fill-rule: evenodd; stroke: rgb(52, 152, 219);"/>
+  <path class="st0" d="M3,21L3,21c-1.1,0-2-0.9-2-2v-6c0-1.1,0.9-2,2-2h0c1.1,0,2,0.9,2,2v6C5,20.1,4.1,21,3,21z" style="fill-rule: evenodd; stroke: rgb(52, 152, 219);"/>
+  <path class="st0" d="M25,8L25,8c1.1,0,2,0.9,2,2v12c0,1.1-0.9,2-2,2h0c-1.1,0-2-0.9-2-2V10C23,8.9,23.9,8,25,8z" style="fill-rule: evenodd; stroke: rgb(52, 152, 219);"/>
+  <path class="st0" d="M29,11L29,11c1.1,0,2,0.9,2,2v6c0,1.1-0.9,2-2,2h0c-1.1,0-2-0.9-2-2v-6C27,11.9,27.9,11,29,11z" style="fill-rule: nonzero; stroke: rgb(52, 152, 219);"/>
+  <line class="st0" x1="9" y1="16" x2="23" y2="16" style="fill-rule: evenodd; stroke: rgb(52, 152, 219);"/>
+</svg>
