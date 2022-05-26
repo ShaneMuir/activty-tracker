@@ -39,7 +39,6 @@ export default {
       getProfile()
     }
 
-
     // Runs when there is an auth state change
     // if user is logged in, this will fire
     supabase.auth.onAuthStateChange((_, session) => {
