@@ -4,7 +4,7 @@
         <div class="flex items-center gap-x-4">
           <router-link class="flex items-center gap-4" :to="{name: 'Home'}">
             <img class="w-14" src="../assets/images/dumbbell-light.png" alt="Dumbbell">
-            <h1 class="text-lg">Active Tracker</h1>
+            <h1 class="text-lg">Activity Tracker</h1>
           </router-link>
         </div>
 
