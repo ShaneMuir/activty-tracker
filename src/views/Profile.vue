@@ -5,8 +5,8 @@
     <div class="grid grid-cols-2 gap-6">
       <div class="flex flex-col items-center bg-light-grey p-8 shadow-md">
         <!-- Profile Img -->
-        <img v-if="avatar_url" :src="avatar_url" class="h-32 w-auto" alt=""/>
-        <img v-else :src="getAvatarUrl()" class="h-24 w-auto" alt="">
+        <img v-if="avatar_url" :src="avatar_url" class="h-20 w-auto" alt=""/>
+        <img v-else :src="getAvatarUrl()" class="h-20 w-auto" alt="">
 
         <p class="mt-1 mb-4 py-1 px-3 text-xxl text-white bg-at-blue shadow-md rounded-lg">
           {{ username }}
@@ -54,22 +54,22 @@
       <div v-if="computedBmi" class="flex flex-col justify-center items-center bg-light-grey p-8 shadow-md">
         <div v-if="computedBmi < 18.5" class="underweight">
           <p class="mt-1 mb-4 py-1 text-center px-3 text-2xl text-at-blue">Based on your BMI score we consider you to be underweight</p>
-          <img src="../assets/images/sad-face.svg" class="h-28 w-full" alt=""/>
+          <img src="../assets/images/sad-face.svg" class="h-20 w-full" alt=""/>
         </div>
 
         <div v-else-if="computedBmi > 18.5 && computedBmi < 26" class="normal-weight">
           <p class="mt-1 mb-4 py-1 text-center px-3 text-2xl text-at-blue">Based on your BMI score we consider you to be an normal weight</p>
-          <img src="../assets/images/smiley.svg" class="h-28 w-full" alt=""/>
+          <img src="../assets/images/smiley.svg" class="h-20 w-full" alt=""/>
         </div>
 
         <div v-else-if="computedBmi > 26 && computedBmi < 36" class="over-weight">
           <p class="mt-1 mb-4 py-1 text-center px-3 text-2xl text-at-blue">Based on your BMI score we consider you to be an over weight</p>
-          <img src="../assets/images/straight-face.svg" class="h-28 w-full" alt=""/>
+          <img src="../assets/images/straight-face.svg" class="h-20 w-full" alt=""/>
         </div>
 
         <div v-else-if="computedBmi > 36.1" class="over-weight">
           <p class="mt-1 mb-4 py-1 text-center px-3 text-2xl text-at-blue">Based on your BMI score we consider you to be an obese</p>
-          <img src="../assets/images/sad-face.svg" class="h-28 w-full" alt=""/>
+          <img src="../assets/images/sad-face.svg" class="h-20 w-full" alt=""/>
         </div>
 
         <p class="mt-10 py-1 px-3 text-xxl text-white bg-at-blue shadow-md rounded-lg">Calculated BMI:
@@ -109,10 +109,10 @@
                        v-for="(workout, index) in workouts"
                        :key="index">
             <!-- Cardio Img -->
-            <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-blue.svg" class="h-24 w-auto" alt=""/>
+            <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-blue.svg" class="h-16 w-auto" alt=""/>
 
             <!-- Strength Training -->
-            <img v-else src="@/assets/images/dumbell-blue.svg" class="h-24 w-auto" alt=""/>
+            <img v-else src="@/assets/images/dumbell-blue.svg" class="h-16 w-auto" alt=""/>
 
             <p class="mt-6 py-1 px-3 text-xs text-white bg-at-blue shadow-md rounded-lg">
               {{ workout.workoutType }}

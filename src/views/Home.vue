@@ -18,10 +18,10 @@
                     v-for="(workout, index) in data"
                    :key="index">
         <!-- Cardio Img -->
-        <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-blue.svg" class="h-24 w-auto" alt=""/>
+        <img v-if="workout.workoutType === 'cardio'" src="@/assets/images/running-blue.svg" class="h-14 w-auto" alt=""/>
 
         <!-- Strength Training -->
-        <img v-else src="@/assets/images/dumbell-blue.svg" class="h-24 w-auto" alt=""/>
+        <img v-else src="@/assets/images/dumbell-blue.svg" class="h-14 w-auto" alt=""/>
 
         <p class="mt-6 py-1 px-3 text-xs text-white bg-at-blue shadow-md rounded-lg">
           {{ workout.workoutType }}

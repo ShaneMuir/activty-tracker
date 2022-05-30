@@ -53,7 +53,7 @@
 
       <div class="flex flex-col mb-2">
         <label for="goal" class="mb-1 text-sm text-at-blue">Your Goal</label>
-        <select v-model="goal" name="goals" id="goals" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none">
+        <select v-model="goal" name="goals" id="goals" class="p-2 mb-2 border border-at-blue text-gray-500 focus:outline-none cursor-pointer">
           <option v-for="(item, index) in options" :key="index" :value="item">
             {{item}}
           </option>

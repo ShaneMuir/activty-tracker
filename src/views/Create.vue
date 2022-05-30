@@ -29,7 +29,7 @@
           <label for="workout-type" class="mb-1 text-sm text-at-blue">
             Workout Type
           </label>
-          <select id="workout-type" class="p-2 text-gray-500 focus:outline-none" required
+          <select id="workout-type" class="p-2 text-gray-500 focus:outline-none cursor-pointer" required
               @change="workoutChange" v-model="workoutType">
             <option value="select-workout">Select Workout</option>
             <option value="strength">Strength Training</option>
@@ -79,7 +79,7 @@
               <label for="cardio-type" class="mb-1 text-sm text-at-blue">
                 Type
               </label>
-              <select id="cardio-type" class="p-2 w-full text-gray-500 focus:outline-none" v-model="item.cardioType">
+              <select id="cardio-type" class="p-2 w-full text-gray-500 focus:outline-none cursor-pointer" v-model="item.cardioType">
                 <option value="#">Select Type</option>
                 <option value="run">Runs</option>
                 <option value="walk">Walk</option>
