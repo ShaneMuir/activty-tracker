@@ -5,6 +5,8 @@ I have taken what I've learnt from this tutorial and many others
 YT videos along with some material from [Vue School](https://vueschool.io/)
 to come up with this Fitness Tracker App.
 
+A live link to this app demo <a target="_blank" href="https://shens-activity-tracker.herokuapp.com/">Activity Tracker</a>
+
 ### Things I want/have added to this project
 - Profiles Page **(ADDED)**
 - BMI Calculator **(ADDED)**
