@@ -22,15 +22,8 @@ this one [Vue 3 Progress Bar](https://github.com/marcoschulte/vue3-progress)
 - Lock workouts, only be able to delete/edit workout 
 that belong to the created user **(ADDED)**
 
-In order to be able to get set up with this project locally you will 
-need to sign upto [Supabase](https://supabase.com/) and get 2 keys. 
-URL Key and Anon key store this in a env file somewhere safe and update
-``
-src/supabase/init.js
-`` to match your key locations.
-
-A database dump has been included with this project.
-
+If you want a project like this for yourself, I strongly advise you to follow along with the linked
+youtube video from Traversy Media where John runs through this entire application from scratch. 
 ## Project setup
 ```
 npm install
