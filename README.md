@@ -5,7 +5,7 @@ I have taken what I've learnt from this tutorial and many others
 YT videos along with some material from [Vue School](https://vueschool.io/)
 to come up with this Fitness Tracker App.
 
-### Things I want to add to the project
+### Things I want/have added to this project
 - Profiles Page **(ADDED)**
 - BMI Calculator **(ADDED)**
 - Personalised workout section **(ADDED on profile page)**
