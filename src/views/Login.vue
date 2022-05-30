@@ -65,9 +65,6 @@ export default {
     const errorMsg = ref(null)
     let progresses = []
 
-    const user = supabase.auth.user();
-    // Again conditional to try to reduce auth requests to db.
-    if(!user) {
       // Login function
       const login = async() => {
         try{
@@ -93,13 +90,7 @@ export default {
           }, 7500)
         }
       }
-
       return {email, password, errorMsg, login}
-    }
-    else
-    {
-      router.push({name: 'Home'})
-    }
   },
 }
 </script>
@@ -107,4 +98,3 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/components/auth";
 </style>
-

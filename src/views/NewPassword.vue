@@ -10,7 +10,6 @@
       <h1 class="text-3xl text-at-blue mb-4">New Password</h1>
 
       <div class="flex flex-col mb-2 password-field">
-<!--        <label for="password" class="mb-1 text-sm text-at-blue">New Password</label>-->
         <input :type="passwordFieldType" required class="p-2 mb-2 text-gray-500 focus:outline-none" id="password" v-model="password"/>
         <i @click="showPassword" :class="{active: passwordActive}" class="fas fa-eye"></i>
       </div>
@@ -21,10 +20,10 @@
       hover:text-at-blue">
         Update Password
       </button>
-
     </form>
   </div>
 </template>
+
 <script>
 import {computed, ref} from "vue";
 import {useProgress} from "@marcoschulte/vue3-progress";
@@ -74,7 +73,6 @@ export default  {
           progresses.pop()?.finish()
         }
       }
-
     return {password, newPassword, errorMsg}
   },
 }

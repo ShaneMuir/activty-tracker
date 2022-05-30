@@ -126,7 +126,6 @@
 
     </div>
   </div>
-
 </template>
 
 <script>
@@ -199,7 +198,6 @@ export default {
       return age;
     }
 
-
     /*
      Generate a random an avatar.
      */
@@ -208,10 +206,8 @@ export default {
       return `https://avatars.dicebear.com/api/big-smile/${avatar}.svg`;
     }
 
-
     return {username, DOB, avatar_url, weight, height, goal, profileDataLoaded,
       getAge, getAvatarUrl, workouts, user, computedBmi};
-
   },
 };
 </script>

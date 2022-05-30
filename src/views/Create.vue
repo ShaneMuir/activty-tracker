@@ -127,6 +127,8 @@ import {computed, ref} from "vue"
 import { uid } from "uid"
 import { supabase } from "../supabase/init"
 import store from "@/store";
+import {useProgress} from "@marcoschulte/vue3-progress";
+
 export default {
   name: "create",
   setup() {
@@ -137,6 +139,7 @@ export default {
     const statusMsg = ref(null);
     const errorMsg = ref(null);
     const user = computed(() => store.state.user)
+    let progresses = []
 
     // Add exercise
     const addExercise = () => {
@@ -185,7 +188,7 @@ export default {
             .single()
         if(data) return data
         if(error && status !== 406) {
-          console.log(error)
+          console.warn(error)
         }
       }
       catch(error) {
@@ -193,34 +196,45 @@ export default {
       }
     }
 
-
-
     // Create workout
     const createWorkout = async () => {
-      try {
-        let username = await getUsername()
-        const { error } = await supabase.from("workouts").insert([
-          {
-            workoutName: workoutName.value,
-            workoutType: workoutType.value,
-            exercises: exercises.value,
-            belongsTo: user.value.id,
-            username: username.username
-          },
-        ]);
-        if (error) throw error;
-        statusMsg.value = "Succes: Workout Created!";
-        workoutName.value = null;
-        workoutType.value = "select-workout";
-        exercises.value = [];
+      if(workoutType.value === "select-workout") {
+        errorMsg.value = "Please select a workout type!";
         setTimeout(() => {
-          statusMsg.value = false;
+          errorMsg.value = null;
         }, 5000);
-      } catch (error) {
-        errorMsg.value = `Error: ${error.message}`;
-        setTimeout(() => {
-          errorMsg.value = false;
-        }, 5000);
+      }
+      else {
+        try {
+          const progress = useProgress().start();
+          progresses.push(progress)
+          let username = await getUsername()
+          const { error } = await supabase.from("workouts").insert([
+            {
+              workoutName: workoutName.value,
+              workoutType: workoutType.value,
+              exercises: exercises.value,
+              belongsTo: user.value.id,
+              username: username.username
+            },
+          ]);
+          if (error) throw error;
+          statusMsg.value = "Success: Workout Created!";
+          workoutName.value = null;
+          workoutType.value = "select-workout";
+          exercises.value = [];
+          progresses.pop()?.finish()
+          setTimeout(() => {
+            statusMsg.value = null;
+
+          }, 5000);
+        } catch (error) {
+          errorMsg.value = `Error: ${error.message}`;
+          progresses.pop()?.finish()
+          setTimeout(() => {
+            errorMsg.value = null;
+          }, 5000);
+        }
       }
     };
 

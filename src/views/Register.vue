@@ -70,55 +70,48 @@ export default {
     const errorMsg = ref(null)
     let progresses = []
 
-    const user = supabase.auth.user()
-    // Added conditional to try to reduce auth requests to DB.
-    if(!user){
-      // Register function
-      const register = async () => {
-        const passwordRegex = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
-        if(passwordRegex.test(password.value)) {
-          try {
-            const progress = useProgress().start();
-            progresses.push(progress)
-            const {error} = await supabase.auth.signUp({
-              username: username.value,
-              email: email.value,
-              password: password.value,
-            })
-            if(error) throw error
-            const {error2} = await supabase
-                .from('profiles')
-                .insert({
-                  id: store.state.user.id,
-                  username: username.value
-                })
-            if(error2) console.log(error2)
-            progresses.pop()?.finish()
-            await router.push({name: "Home"})
-          } catch(error) {
-            errorMsg.value = error.message
-            progresses.pop()?.finish()
-            setTimeout(() => {
-              errorMsg.value = null
-            }, 7500)
-          }
-        } else {
+    // Register function
+    const register = async () => {
+      const passwordRegex = new RegExp('^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$')
+      if (passwordRegex.test(password.value)) {
+        try {
+          const progress = useProgress().start();
+          progresses.push(progress)
+          const {error} = await supabase.auth.signUp({
+            username: username.value,
+            email: email.value,
+            password: password.value,
+          })
+          if (error) throw error
+          const {error2} = await supabase
+              .from('profiles')
+              .insert({
+                id: store.state.user.id,
+                username: username.value
+              })
+          if (error2) console.log(error2)
           progresses.pop()?.finish()
-          errorMsg.value = `Password must contain 8 characters and have a mix
-                          of letters, numbers and symbols.`
+          await router.push({name: "Home"})
+        } catch (error) {
+          errorMsg.value = error.message
+          progresses.pop()?.finish()
           setTimeout(() => {
             errorMsg.value = null
           }, 7500)
         }
+      } else {
+        progresses.pop()?.finish()
+        errorMsg.value = `Password must contain 8 characters and have a mix
+                          of letters, numbers and symbols.`
+        setTimeout(() => {
+          errorMsg.value = null
+        }, 7500)
       }
-
-      return {username, email, password, errorMsg, register};
-    } else {
-      router.push({name: "Home"})
     }
-    return {username, email, password, errorMsg}
-  },
-};
+
+    return {username, email, password, errorMsg, register};
+  }
+}
 </script>
 
 <style lang="scss" scoped>

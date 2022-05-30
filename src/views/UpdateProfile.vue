@@ -69,7 +69,6 @@
           :disabled="loading"
       />
     </form>
-
   </div>
 </template>
 
@@ -109,7 +108,6 @@ export default {
             .select()
             .match({id: user.id})
             .single()
-        // console.log(data)
         username.value = data.username
         avatar_url.value = data.avatar_url
         DOB.value = data.DOB

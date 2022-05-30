@@ -30,8 +30,6 @@
           </div>
         </div>
 
-
-
         <img v-if="data.workoutType === 'cardio'"
             class="h-24 w-auto"
             src="@/assets/images/running-blue.svg"
@@ -177,6 +175,7 @@ import { supabase } from "@/supabase/init";
 import { useRoute, useRouter } from "vue-router";
 import store from "@/store/index";
 import { uid } from "uid";
+
 export default {
   name: "view-workout",
   setup() {
@@ -200,7 +199,6 @@ export default {
         if (error) throw error;
         data.value = workouts[0];
         dataLoaded.value = true;
-        // console.log(data.value);
       } catch (error) {
         errorMsg.value = error.message;
         setTimeout(() => {
@@ -210,7 +208,6 @@ export default {
     };
     getData();
 
-
     // Delete workout
     const deleteWorkout = async () => {
       try {
@@ -219,7 +216,7 @@ export default {
             .delete()
             .eq("id", currentId);
         if (error) throw error;
-        router.push({ name: "Home" });
+        await router.push({ name: "Home" });
       } catch (error) {
         errorMsg.value = `Error: ${error.message}`;
         setTimeout(() => {
@@ -227,11 +224,13 @@ export default {
         }, 5000);
       }
     };
+
     // Edit mode
     const edit = ref(null);
     const editMode = () => {
       edit.value = !edit.value;
     };
+
     // Add exercise
     const addExercise = () => {
       if (data.value.workoutType === "strength") {
@@ -252,6 +251,7 @@ export default {
         pace: "",
       });
     };
+
     // Delete exercise
     const deleteExercise = (id) => {
       if (data.value.exercises.length > 1) {
@@ -265,6 +265,7 @@ export default {
         errorMsg.value = false;
       }, 5000);
     };
+
     // Update Workout
     const update = async () => {
       try {
@@ -288,19 +289,9 @@ export default {
         }, 5000);
       }
     };
-    return {
-      statusMsg,
-      data,
-      dataLoaded,
-      errorMsg,
-      edit,
-      editMode,
-      user,
-      deleteWorkout,
-      addExercise,
-      deleteExercise,
-      update,
-    };
+
+    return {statusMsg, data, dataLoaded, errorMsg, edit, editMode,
+      user, deleteWorkout, addExercise, deleteExercise, update};
   },
 };
 </script>

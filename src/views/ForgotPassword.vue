@@ -43,13 +43,12 @@ export default {
       try {
         const progress = useProgress().start()
         progresses.push(progress)
-        const {user, error} = await supabase.auth.api.resetPasswordForEmail(email.value)
+        const {error} = await supabase.auth.api.resetPasswordForEmail(email.value)
         if(error) throw error
         errorMsg.value = `Check your email for a link`
         setTimeout(() => {
           errorMsg.value = null
         }, 7500)
-        return user
       } catch (error) {
         errorMsg.value = `Error: ${error.message}`
         progresses.pop()?.finish()
